@@ -1,18 +1,14 @@
-import { Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
 
-import Home from "./routes/Home";
-import Community from "./routes/Community";
-import Mypage from "./routes/Mypage";
+import Layout from "./layout/Layout";
+import Router from "./components/Router";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
-    <main>
-       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/community" element={<Community />} />
-        <Route path="/mypage" element={<Mypage />} />
-      </Routes>
-    </main>
+    <Layout>
+      <Router isLoggedIn={isLoggedIn} />
+    </Layout>
   );
 }
 
