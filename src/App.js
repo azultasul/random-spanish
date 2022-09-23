@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Layout from "./layout/Layout";
-import Router from "./components/Router";
+import Router from "./Router";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

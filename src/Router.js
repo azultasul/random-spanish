@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Community from "../pages/Community";
-import Mypage from "../pages/Mypage";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Community from "./pages/Community";
+import Mypage from "./pages/Mypage";
 
 const Router = (props) => {
   return (

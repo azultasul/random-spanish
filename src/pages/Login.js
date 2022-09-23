@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { authService } from "../util/fbase";
 
-const Auth = () => {
-  console.log("auth", authService);
+import Modal from '../layout/Modal';
+
+const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [emailSignformIsOpend, setEmailSignformIsOpend] = useState(false);
+  const [googleSignformIsOpend, setGoogleSignformIsOpend] = useState(false);
+
 
   const onChange = (event) => {
     const {target: {name, value}} = event;
@@ -19,17 +24,34 @@ const Auth = () => {
     event.preventDefault();
   }
 
+  const showSignForm = (param, e) => {
+    if ( param === 'email') {
+      console.log("email");
+      setEmailSignformIsOpend(true);
+    } else if (param === 'google') {
+      console.log("google");
+      setGoogleSignformIsOpend(true);
+    }
+  };
+
   return (
     <div>
       <form onSubmit={onSubmit}>
         <input type="email" value={email} onChange={onChange} placeholder="email" required/>
         <input type="password" value={password} onChange={onChange} placeholder="password" required/>
-        <input type="submit" placeholder="로그인" />
+        <input type="submit" value="로그인" />
       </form>
-      <button>email로 가입</button>
-      <button>Google로 가입</button>
+      <button onClick={() => {showSignForm('email')}}>email로 가입</button>
+      <button onClick={() => {showSignForm('google')}}>Google로 가입</button>
+      {emailSignformIsOpend && <Modal>{
+        <form onSubmit={onSubmit}>
+          <input type="email" value={email} onChange={onChange} placeholder="email" required/>
+          <input type="password" value={password} onChange={onChange} placeholder="password" required/>
+          <input type="submit" value="회원가입" />
+        </form>
+      }</Modal>}
     </div>
   )
 }
 
-export default Auth;
+export default Login;
